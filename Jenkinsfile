@@ -36,6 +36,6 @@ pipeline {
                 sh 'docker login --username $DOCKERHUB_CREDS_USR --pasword $DOCKERHUB_CREDS_PSW'
                 sh 'docker push rkdockerking/gamutkart:${BUILD_NUMBER}'                     
             }
-    
+        }   
     }
 }
