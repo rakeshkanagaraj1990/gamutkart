@@ -10,9 +10,9 @@ pipeline {
             }
         }
         stage ('dockerbuild') {
-            agent {
-                // Equivalent to "docker build -f Dockerfile.build --build-arg version=1.0.2 ./build/
-                dockerfile { }
+            agent any
+            steps {
+                sh 'docker build -t rkdockerking/gamutkart:${BUILD_NUMBER} .'
             }
         }
     }
