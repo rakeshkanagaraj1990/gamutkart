@@ -40,14 +40,22 @@ pipeline {
     stage('DeployApp') {
       agent any
       environment {
-        DOCKERHUB_CREDS = credentials('dockerhub')
+        REMOTEHOST_CREDS = credentials('remotehost')
       }
       options {
         skipDefaultCheckout(true)
       }
       steps {
-        sh 'docker login --username $DOCKERHUB_CREDS_USR --password $DOCKERHUB_CREDS_PSW'
-        sh 'docker run -dit --rm --name gamutgurus -p 8081:8080 rkdockerking/gamutkart:${BUILD_NUMBER}'
+          withCredentials([sshUserPrivateKey(credentialsId: 'remotehost', keyFileVariable: 'REMOTEHOST_KEY', passphraseVariable: '', usernameVariable: 'vagrant')])
+          script {
+          def remote = [:]
+          remote.name = "RemoteHost"
+          remote.host = "192.168.0.104"
+          remote.allowAnyHosts = true
+          remote.user = vagrant
+          remote.identityFile = REMOTEHOST_KEY
+          sshCommand remote: remote, command: "sudo docker ps -a" 
+          }
       }
     }
   }
