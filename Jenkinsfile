@@ -1,8 +1,5 @@
 pipeline {
     agent none
-    options {
-        skipDefaultCheckout true
-    }
     triggers {
       pollSCM 'H/1 * * * * '
     }
@@ -19,6 +16,9 @@ pipeline {
         }
         stage ('dockerbuild') {
             agent any
+            options {
+                skipDefaultCheckout true
+            }
             steps {
                 sh 'docker build -t rkdockerking/gamutkart:${BUILD_NUMBER} .'
             }
