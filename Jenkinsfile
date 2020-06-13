@@ -3,6 +3,9 @@ pipeline {
     options {
         skipDefaultCheckout true
     }
+    triggers {
+      pollSCM 'H/1 * * * * '
+    }
     stages {
         stage ('build') {
             agent {
