@@ -33,12 +33,23 @@ pipeline {
         skipDefaultCheckout(true)
       }
       steps {
-        sh 'echo "Dockerhub user is $DOCKERHUB_CREDS_USR"'
         sh 'docker login --username $DOCKERHUB_CREDS_USR --password $DOCKERHUB_CREDS_PSW'
         sh 'docker push rkdockerking/gamutkart:${BUILD_NUMBER}'
       }
     }
-
+    stage('DeployApp') {
+      agent any
+      environment {
+        DOCKERHUB_CREDS = credentials('dockerhub')
+      }
+      options {
+        skipDefaultCheckout(true)
+      }
+      steps {
+        sh 'docker login --username $DOCKERHUB_CREDS_USR --password $DOCKERHUB_CREDS_PSW'
+        sh 'docker run -dit --rm --name gamutgurus -p 8081:8080 rkdockerking/gamutkart:${BUILD_NUMBER}'
+      }
+    }
   }
   triggers {
     pollSCM('H/1 * * * * ')
