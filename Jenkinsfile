@@ -53,7 +53,7 @@ pipeline {
           remote.host = "192.168.0.104"
           remote.allowAnyHosts = true
           remote.user = vagrant
-          remote.identityFile = REMOTEHOST_KEY
+          remote.identityFile = "$REMOTEHOST_KEY"
           sshCommand remote: remote, command: "sudo docker ps -a" 
           }
       }
