@@ -7,10 +7,9 @@ pipeline {
                     image 'maven:3-alpine'
                     args '-v $WORKSPACE/.m2:/root/.m2'
                 }
-
             }
             steps {
-                sh 'mvn install'
+                sh 'mvn cleam install -o'
             }
         }
         stage('ImageBuild') {
