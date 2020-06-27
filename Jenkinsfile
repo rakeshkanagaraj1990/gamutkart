@@ -9,7 +9,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'mvn cleam install -o'
+                sh 'mvn install -o'
             }
         }
         stage('ImageBuild') {
