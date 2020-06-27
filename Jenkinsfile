@@ -9,7 +9,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'mvn install -o'
+                sh 'mvn install'
             }
         }
         stage('ImageBuild') {
