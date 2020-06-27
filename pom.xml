@@ -6,6 +6,9 @@
 	<artifactId>gamutkart</artifactId>
 	<packaging>war</packaging>
 	<version>1.1-SNAPSHOT</version>
+	<settings>
+		<localRepository>/root/.m2</localRepository>
+	</settings>
 	
 	<dependencies>
 		<dependency>
