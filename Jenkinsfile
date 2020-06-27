@@ -55,7 +55,7 @@ pipeline {
                   (
                     sourceFiles: 'deploy.sh',
                     execCommand: 'sudo ./deploy.sh ${BUILD_NUMBER}',
-                    execTimeout: 120
+                    execTimeout: 120000
 
                   )
                 ]
