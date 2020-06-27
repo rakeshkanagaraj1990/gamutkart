@@ -53,7 +53,7 @@ pipeline {
                                                                     (
                                                                             sourceFiles: 'deploy.sh',
                                                                             patternSeparator: '[, ]+', 
-                                                                            execCommand: 'sudo ./deploy.sh ${BUILD_NUMBER}',
+                                                                            execCommand: 'chmod +x deploy.sh && sudo ./deploy.sh ${BUILD_NUMBER}',
                                                                             execTimeout: 120000
 
                                                                     )
