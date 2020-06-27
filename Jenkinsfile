@@ -51,8 +51,11 @@ pipeline {
                                                     configName: 'RemoteHost1',
                                                     transfers: [
                                                             sshTransfer
-                                                                    (
-                                                                            execCommand: 'sudo docker run -d -p 8090:8080 rkdockerking/gamutkart:${BUILD_NUMBER}'
+                                                                    (       
+                                                                            sourceFiles: 'deploy.sh',
+                                                                            execCommand: 'sudo ./deploy.sh',
+                                                                            execTimeout: 120
+                                                                            
                                                                     )
                                                     ]
                                             )
