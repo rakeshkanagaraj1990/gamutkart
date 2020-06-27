@@ -2,7 +2,7 @@
 set -x 
 
 NAME="gamutgurus"
-[ -z "$1" ] && { echo "Please provide the buildnumber that to be deployed" ; exit 1; }
+[ -z "$1" ] && { echo "Please provide the buildnumber that to be deployed." ; exit 1; }
 
 # Stopping & Removing Gamutgurus Container if Exist
 CONTAINER_NAME=$(sudo docker ps -a --format "{{.Names}}" --filter "name=$NAME")
