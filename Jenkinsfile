@@ -43,7 +43,6 @@ pipeline {
                 skipDefaultCheckout(true)
             }
             steps {
-                withCredentials([sshUserPrivateKey(credentialsId: 'remotehost', keyFileVariable: 'REMOTEHOST_KEY', passphraseVariable: '', usernameVariable: 'vagrant')])
                 script {
                     sshPublisher(
                             publishers:
